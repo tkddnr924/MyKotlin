@@ -1,3 +1,1 @@
-
-rootProject.name = "MyKotlin"
-
+rootProject.name = "demo"
