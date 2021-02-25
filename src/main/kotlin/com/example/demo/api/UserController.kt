@@ -2,20 +2,21 @@ package com.example.demo.api
 
 import com.example.demo.models.User
 import com.example.demo.models.UserRepository
-import org.springframework.ui.Model
+import org.bson.types.ObjectId
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping(path=["/api/user"])
+@RequestMapping("/api/user")
 class UserController {
-    val ur: UserRepository? = null
 
-    @RequestMapping(path=["/"], method = [RequestMethod.GET])
+    @RequestMapping(value=["/"], method = [RequestMethod.GET])
     fun indexUser(): String = "Hello, User"
 
-    @RequestMapping(value=["/"], method=[RequestMethod.POST])
-    fun createUser(@RequestBody data: Model) {
-        val user = User()
-        ur?.save(user)
+    @RequestMapping(value=["/"], method=[RequestMethod.POST], consumes=[MediaType.APPLICATION_JSON_VALUE], produces=[MediaType.APPLICATION_JSON_VALUE])
+    fun createUser(@RequestBody data: User): ResponseEntity<List<User>> {
+        val user = UserRepository.findAll()
+        return ResponseEntity.ok(user)
     }
 }

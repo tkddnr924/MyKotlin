@@ -11,10 +11,14 @@ import javax.persistence.Id
 class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var userid: String? = null
-    var name: String? = null
-    var email: String? = null
-    var password: String? = null
+    val userid: String? = null
+    val name: String? = null
+    val email: String? = null
+    val password: String? = null
 
-    var createdAt: LocalDateTime = LocalDateTime.now()
+    val createdAt: LocalDateTime = LocalDateTime.now()
+
+    fun getUser(): String? {
+        return name
+    }
 }
